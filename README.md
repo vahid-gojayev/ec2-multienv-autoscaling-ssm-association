@@ -125,6 +125,7 @@ Let's do that steps:
   1) Create Variables in Parameter Store  as Type SecureString
   2) Create 3 bucket for dev prod and scripts (for script bucket i explained you must change in usermgmt _document.json  file)
   3) Create LaunchConfig and add script to User Data 
+            
             #!/bin/bash
             cd /tmp
             curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm
