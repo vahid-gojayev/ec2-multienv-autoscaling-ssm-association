@@ -1,0 +1,16 @@
+[Unit]
+Description=Manage Java service
+
+[Service]
+WorkingDirectory=/opt/deploy
+ExecStartPre=/usr/bin/python3 /opt/deploy/env.py
+EnvironmentFile=/etc/environment
+ExecStart=/bin/java -Xms128m -Xmx256m -jar $AWS_API_JARNAME
+ExecStartPost=/bin/bash -c "echo >  /etc/environment"
+User=root
+Type=simple
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

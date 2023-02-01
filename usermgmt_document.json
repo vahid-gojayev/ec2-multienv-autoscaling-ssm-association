@@ -1,0 +1,42 @@
+{
+
+        "schemaVersion":"2.0",
+     
+        "description":"State Manager Bootstrap Example",
+     
+         "parameters": {
+     
+         },
+     
+        "mainSteps": [
+     
+          {
+     
+            "action": "aws:runShellScript",
+     
+            "name": "configureServer",
+     
+            "inputs": {
+     
+               "runCommand": [
+                   "yum install -y java-1.8.0-openjdk",
+                   "pip3 install boto3",
+                   "pip3 install requests",
+                   "touch /etc/environment",
+                   "mkdir /opt/deploy",
+                   "cd /opt/deploy",
+                   "aws s3 cp  s3://mulienv-script/env.py ./env.py",
+                   "aws s3 cp  s3://mulienv-script/usermgmtapp.service  /etc/systemd/system/usermgmtapp.service",
+                   "systemctl  daemon-reload",
+                   "systemctl  restart usermgmtapp.service"
+                   
+                   
+               ]
+     
+            }
+     
+          }
+     
+        ]
+     
+     }
